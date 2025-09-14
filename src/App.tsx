@@ -24,9 +24,15 @@ function App() {
   };
 
   const handleDownload = () => {
-    const svg = document.querySelector('svg');
+    const svg = document.querySelector('#aztec-logo-svg');
     if (svg) {
-      const svgData = new XMLSerializer().serializeToString(svg);
+      // Clone the SVG to avoid modifying the original
+      const svgClone = svg.cloneNode(true) as SVGElement;
+      
+      // Set a white background for the download
+      svgClone.style.backgroundColor = 'white';
+      
+      const svgData = new XMLSerializer().serializeToString(svgClone);
       const canvas = document.createElement('canvas');
       const ctx = canvas.getContext('2d');
       const img = new Image();
@@ -35,6 +41,11 @@ function App() {
       canvas.height = 300;
       
       img.onload = () => {
+        // Fill canvas with white background
+        if (ctx) {
+          ctx.fillStyle = 'white';
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+        }
         ctx?.drawImage(img, 0, 0);
         const link = document.createElement('a');
         link.download = 'aztec-renaissance-logo.png';

@@ -11,6 +11,7 @@ export const AztecLogo: React.FC<AztecLogoProps> = ({ fillColor, onLogoClick }) 
       <h2 className="text-white text-xl md:text-2xl font-bold mb-4 md:mb-6 text-center">Click the Logo to Color It</h2>
       <div className="flex justify-center overflow-x-auto">
         <svg 
+          id="aztec-logo-svg"
           className="w-full max-w-4xl h-auto cursor-pointer transition-all duration-500 hover:scale-105 filter drop-shadow-lg"
           viewBox="0 0 1170 300" 
           onClick={onLogoClick}
